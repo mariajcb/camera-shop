@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="cameraShop">
+
+<head>
+    <meta charset="utf-8">
+    <title>Camera Shop</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <link rel='stylesheet' href='style.css' />
+</head>
+
+<body ng-controller="cameraController">
+    <select name="sort" type="text" ng-model="data.sort">
+      <option value="rating">Rating</option>
+      <option value="price">Price</option>
+  </select>
+    <h1> Camera Shop </h1>
+    <div ng-repeat="camera in cameraArray | orderBy:data.sort">
+        <ul>
+            <h4>{{camera.title}}</h4>
+            <img ng-src={{camera.image}} alt="{{camera.title}} photo" />
+            <p>Rating: {{camera.rating}}</p>
+            <p ng-class='{orange: camera.onSale}'> Price: {{camera.price | currency}} <span ng-show='camera.onSale'> ON SALE!!</span></p>
+        </ul>
+    </div>
